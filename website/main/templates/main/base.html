@@ -26,6 +26,7 @@
         </div>
         <div>
           <ul class="navbar-nav">
+            {% comment %} user variable is always passed to the template {% endcomment %}
             {% if user.is_authenticated %}
               <span class="navbar-text">Logged in as {{ user.username }} |</span>
               <li class="nav-item">
