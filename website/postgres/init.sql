@@ -1,0 +1,3 @@
+CREATE DATABASE website;
+
+GRANT ALL PRIVILEGES ON DATABASE website TO postgres;
