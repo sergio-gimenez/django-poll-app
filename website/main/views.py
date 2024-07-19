@@ -3,11 +3,26 @@ from .forms import RegisterForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
+from .forms import PostForm
 
-# Redirects to login page if user is not logged in
+
 @login_required(login_url='/login')
 def home(request):
     return render(request, 'main/home.html')
+
+
+@login_required(login_url='/login')
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)  # Filled form if POST request
+        if form.is_valid():
+            post = form.save(commit=False)  # Do not save the form yet in  DB
+            post.author = request.user
+            post.save()
+            return redirect('/home')
+    else:
+        form = PostForm()  # Empty form if GET request
+    return render(request, 'main/create_post.html', {'form': form})
 
 
 def sign_up(request):
