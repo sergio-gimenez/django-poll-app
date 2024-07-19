@@ -13,7 +13,7 @@ def home(request):
     if request.method == 'POST':
         post_id = request.POST.get("post-id")
         post = Post.objects.filter(id=post_id).first()
-        if post and post.author == request.user:
+        if post and (post.author == request.user or request.user.has_perm("main.delete_post")):
             post.delete()
     return render(request, 'main/home.html', {'posts': posts})
 
