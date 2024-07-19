@@ -21,5 +21,7 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("main.urls")),
+    # Includes django's builtin auth urls.
+    # Views can be checked in https://docs.djangoproject.com/en/5.0/topics/auth/default/#using-the-views
     path("", include("django.contrib.auth.urls")),
 ]
