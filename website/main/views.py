@@ -22,4 +22,5 @@ def sign_up(request):
 
 def log_out(request):
     logout(request)
+    # TODO maybe this is redundant with the settings.py REDIRECT_URL setting
     return redirect('/login')
